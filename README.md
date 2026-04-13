@@ -1,47 +1,60 @@
 <p align="center">
-  <h2 align="center">DeepWhite</h2>
+  <h2 align="center">FlatDeep</h2>
 </p>
 
 ![screenshot](screenshot/screenshot1.png)
 
 ## About
 
-DeepWhite is a light colorscheme inspired by [flatwhite-syntax](https://github.com/biletskyy/flatwhite-syntax) and [elegant-emacs](https://github.com/rougier/elegant-emacs).
+FlatDeep is a light colorscheme inspired by [flatwhite-syntax](https://github.com/biletskyy/flatwhite-syntax) and [elegant-emacs](https://github.com/rougier/elegant-emacs).
 
 ## Installation
 
 ```lua
 -- for packer.nvim
 use {
-    'Verf/deepwhite.nvim',
+    '3dyuval/flatdeep.nvim',
     config = function()
-        vim.cmd [[colorscheme deepwhite]]
+        vim.cmd [[colorscheme flatdeep]]
     end,
 }
 
 -- for lazy.nvim
 {
-    'Verf/deepwhite.nvim',
+    '3dyuval/flatdeep.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-        vim.cmd [[colorscheme deepwhite]]
+        vim.cmd [[colorscheme flatdeep]]
     end,
 }
 ```
 
+## Variants
+
+| Colorscheme            | Variant   | Description                              | Background | Colors      |
+|------------------------|-----------|------------------------------------------|------------|-------------|
+| `flatdeep`            | `default` | Original flatdeep (light theme)         | `#FAF2EB`  | Vibrant     |
+| `flatdeep-flatwhite`  | `flatwhite` | Muted earth tones (light theme)          | `#ffffff`  | Desaturated |
+
 ## Configuration
 
 ```lua
-require('deepwhite').setup({
+require('flatdeep').setup({
+    -- Choose a variant: "default" or "flatwhite"
+    variant = "default",
+    
     -- If you have some anti-blue light setting (f.lux, light bulb, or low blue light mode monitor),
     -- turn it on, this will set the background color to a cooler color to prevent the background from being too warm.
-    low_blue_light = true
+    low_blue_light = true,
+    
+    -- Transparent background
+    transparent = false,
 })
 -- for lualine
 require('lualine').setup({
         options = {
-            theme = 'deepwhite',
+            theme = 'flatdeep',
         },
     })
 -- for barbar

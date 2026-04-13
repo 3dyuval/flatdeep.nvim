@@ -1,9 +1,9 @@
--- Deepwhite: Color palette variants
+-- FlatDeep: Color palette variants
 local M = {}
 
--- Default variant (original deepwhite - dark theme with vibrant colors)
+-- Default variant (original flatdeep - light theme with vibrant colors)
 M.variants = {
-  deepwhite = {
+  default = {
     bg = {
       base = "#FAF2EB",
       muted = "#E6E4DF",
@@ -22,7 +22,7 @@ M.variants = {
       green = "#00A600",
       green_light = "#00A600",
       green_pastel = "#00A6A6",
-      yellow = "#F2F200",
+      yellow = "#b0801f",
       yellow_dark = "#F27900",
       purple = "#6F00A6",
       purple_med = "#907aa9",
@@ -81,24 +81,32 @@ M.variants = {
       red = "#f6cfcb",
     },
   },
+  
 }
 
 -- Get current variant colors
-M.current = M.variants.deepwhite
+M.current = M.variants.default
 
 -- Set variant
 function M.set_variant(name)
   if M.variants[name] then
     M.current = M.variants[name]
   else
-    print("Unknown variant: " .. name .. ". Available: deepwhite, flatwhite")
+    print("Unknown variant: " .. name .. ". Available: default, flatwhite")
   end
 end
 
 -- Build flat color names from semantic groups
 function M.build_colors(opts)
   opts = opts or {}
-  local v = opts.variant or M.current
+  
+  -- Resolve variant: if string, look it up; otherwise use current
+  local v
+  if type(opts.variant) == "string" then
+    v = M.variants[opts.variant] or M.current
+  else
+    v = M.current
+  end
   
   return {
     -- Backgrounds
