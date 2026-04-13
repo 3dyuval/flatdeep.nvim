@@ -1,41 +1,108 @@
+-- Flatwhite: Muted pastel color palette
 local M = {}
 
-function M.get_colors(options)
-	local colors = {
-		base0 = "#1A1918", -- hsv(30, 8%, 10%)
-		base1 = "#595855", -- hsv(45, 4%, 35%)
-		base2 = "#807E79", -- hsv(43, 5%, 50%)
-		base3 = "#999791", -- hsv(45, 5%, 60%)
-		base4 = "#B3B1AD", -- hsv(40, 3%, 70%)
-		base5 = "#CCCBC6", -- hsv(50, 3%, 80%)
-		base6 = "#E6E4DF", -- hsv(43, 3%, 90%)
-		base7 = "#FAF2EB", -- hsv(24, 4%, 98%)
+-- Background shades (light theme)
+M.bg = {
+  base = "#ffffff",
+  muted = "#f7f3ee",
+  highlight = "#f1ece4",
+  visual = "#dcd3c6",
+  cursor_line = "NONE",
+  darkest = "#4a4540",
+}
 
-		light_orange = "#FAE1C8", -- hsv(30, 20%, 98%)
-		light_yellow = "#FAFAC8", -- hsv(60, 20%, 98%)
-		light_cyan = "#C8FAFA", -- hsv(180, 20%, 98%)
-		light_green = "#D4FAD4", -- hsv(120, 15%, 98%)
-		light_blue = "#D4D4FA", -- hsv(240, 15%, 98%)
-		light_purple = "#EDD4FA", -- hsv(280, 15%, 98%)
-		light_pink = "#FAD4ED", -- hsv(320, 15%, 98%)
-		light_red = "#FAD4D4", -- hsv(360, 15%, 98%)
+-- Bright/foreground colors
+M.fg = {
+  base = "#605a52",
+  muted = "#93836c",
+  dim = "#b9a992",
+  line_nr = "#93836c",
+}
 
-		orange = "#F27900", -- hsv(30, 100%, 95%)
-		yellow = "#F2F200", -- hsv(60, 100%, 95%)
-		cyan = "#00A6A6", -- hsv(180, 100%, 65%)
-		green = "#00A600", -- hsv(120, 100%, 65%)
-		blue = "#0000A6", -- hsv(240, 100%, 65%)
-		purple = "#6F00A6", -- hsv(280, 100%, 65%)
-		pink = "#A6006F", -- hsv(320, 100%, 65%)
-		red = "#A60000", -- hsv(360, 100%, 65%)
+-- Accent colors (saturated)
+M.accent = {
+  green = "#465953",
+  green_light = "#525643",
+  green_pastel = "#5f8c7d",
+  
+  yellow = "#a9994c",
+  yellow_dark = "#5b5143",
+  
+  purple = "#614c61",
+  purple_med = "#9c739c",
+  
+  blue = "#7382a0",
+  blue_dark = "#4c5361",
+  
+  red = "#5b4343",
+  red_med = "#955f5f",
+}
 
-		iris = '#907aa9',
-		muted = '#9893a5',
-	}
-	if options.low_blue_light then
-		colors.base7 = "#FAFAFA" -- hsv(60, 0%, 98%)
-	end
-	return colors
+-- Pastel backgrounds for syntax highlighting
+M.pastel = {
+  green = "#d2ebe3",
+  green_light = "#e2e9c1",
+  
+  yellow = "#f7e0c3",
+  yellow_light = "#f5edc7",
+  
+  purple = "#f1ddf1",
+  
+  blue = "#dde4f2",
+  
+  red = "#f6cfcb",
+}
+
+-- Build flat color names from semantic groups
+function M.build_colors(opts)
+  opts = opts or {}
+  
+  return {
+    -- Backgrounds
+    bg = opts.transparent and "NONE" or M.bg.base,
+    bg_muted = M.bg.muted,
+    bg_highlight = M.bg.highlight,
+    bg_visual = M.bg.visual,
+    bg_cursor_line = M.bg.cursor_line,
+    bg_darkest = M.bg.darkest,
+    
+    -- Foregrounds
+    fg = M.fg.base,
+    fg_muted = M.fg.muted,
+    fg_dim = M.fg.dim,
+    fg_line_nr = M.fg.line_nr,
+    
+    -- Greens
+    green = M.accent.green,
+    green_light = M.accent.green_light,
+    green_pastel = M.accent.green_pastel,
+    pastel_green = M.pastel.green,
+    pastel_green_light = M.pastel.green_light,
+    
+    -- Yellows
+    yellow = M.accent.yellow,
+    yellow_dark = M.accent.yellow_dark,
+    pastel_yellow = M.pastel.yellow,
+    pastel_yellow_light = M.pastel.yellow_light,
+    
+    -- Purples
+    purple = M.accent.purple,
+    purple_med = M.accent.purple_med,
+    pastel_purple = M.pastel.purple,
+    
+    -- Blues
+    blue = M.accent.blue,
+    blue_dark = M.accent.blue_dark,
+    pastel_blue = M.pastel.blue,
+    
+    -- Reds
+    red = M.accent.red,
+    red_med = M.accent.red_med,
+    pastel_red = M.pastel.red,
+    
+    -- White
+    white = "#ffffff",
+  }
 end
 
 return M
